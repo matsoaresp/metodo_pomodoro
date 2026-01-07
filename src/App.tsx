@@ -5,6 +5,7 @@ import { Logo } from './components/Logo';
 import { Menu } from './components/Menu';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
+import { Cycles } from './components/Cycles';
 
 
 export default function App() {
@@ -24,18 +25,16 @@ export default function App() {
         <CountDown />
       </Container>
 
-
       <Container>
         <div className='form'>
-          <DefaultInput type= 'text'/>
+          <DefaultInput labelText='Mateus' id='meuInput' type= 'text' placeholder='Digite algo'
+          />
           <div className='formRow'>
             <p>Nesse ciclo descanse 5 min</p>
           </div>
           <div className='formRow'>
-            <p></p>
-            <p>0 0 0 0</p>
+           <Cycles/>
           </div>
-
           <div className='formRow'>
             <button>
             Enviar
@@ -43,6 +42,7 @@ export default function App() {
           </div>
         </div>
       </Container>
+
     </>
   )
 }
