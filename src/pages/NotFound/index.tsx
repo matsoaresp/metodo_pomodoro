@@ -1,14 +1,36 @@
 import { Container } from "lucide-react";
 import MainTemplate from "../../templates/MainTemplate";
+import { Heading } from "../../components/Heading";
+import { GenericHtml } from "../../components/GenericHtml";
 
 export function NotFound() {
     return (
         <MainTemplate>
             <Container>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, aperiam? Qui harum tempora ducimus dolore architecto voluptas reprehenderit voluptatibus commodi quibusdam debitis sequi ipsam magnam numquam dignissimos voluptates aspernatur molestiae, in ullam, nulla porro? Sequi, harum quos minus exercitationem accusamus quis fugiat tempore excepturi molestias officiis qui illum aperiam laudantium eligendi nihil! Exercitationem, voluptatibus! Ullam vitae repellendus quaerat. Quia repudiandae maiores harum. Quam neque cumque eum quod nulla sed similique perferendis temporibus doloremque, repellendus suscipit corporis exercitationem explicabo officia commodi architecto corrupti ad excepturi tempora autem quia ea. Dicta, minima. Cumque natus cupiditate labore consec
-                    tetur repellendus ipsa at accusantium nulla.
-                </p>
+                <GenericHtml>
+          <Heading>404 - Página não encontrada 🚀</Heading>
+          <p>
+            Opa! Parece que a página que você está tentando acessar não existe.
+            Talvez ela tenha tirado férias, resolvido explorar o universo ou se
+            perdido em algum lugar entre dois buracos negros. 🌌
+          </p>
+          <p>
+            Mas calma, você não está perdido no espaço (ainda). Dá pra voltar em
+            segurança para a <a href='/'>página principal</a> ou{' '}
+            <a href='/history'>para o histórico</a> — ou pode ficar por aqui e
+            fingir que achou uma página secreta que só os exploradores mais
+            legais conseguem acessar. 🧭✨
+          </p>
+          <p>
+            Se você acha que essa página deveria existir (ou se quiser bater um
+            papo sobre viagem no tempo e buracos de minhoca), é só entrar em
+            contato. Caso contrário, use o menu para voltar ao mundo real.
+          </p>
+          <p>
+            Enquanto isso, fica aqui uma reflexão: "Se uma página não existe na
+            internet, será que ela existiu de verdade?" 🤔💭
+          </p>
+            </GenericHtml>
             </Container>
         </MainTemplate>
     )
