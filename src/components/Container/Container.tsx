@@ -6,7 +6,6 @@ type ContainerProps = {
 
 export function Container({ children }: ContainerProps) {
     return (
-
         <div className={style.content}>
             <div className={style.container}>
                 {children}
