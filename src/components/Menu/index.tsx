@@ -33,5 +33,4 @@ export function Menu() {
         <a className={styles.menuLink} href="#
     " title='Alterar Tema' aria-label='Alterar tema' onClick={handleThemeChange}>{theme === 'dark' ? <MoonIcon /> : <SunMoonIcon/>}</a>
     </nav>
-
 }
