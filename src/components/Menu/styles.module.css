@@ -22,10 +22,8 @@
     background-color: var(--primary); 
     color: var(--text-over-primary);
     border-radius: 0.8rem; 
-    
-    
+       
 }
-
 .menuLink:hover {
     filter: brightness(80%);
     transition: 0.1s;
