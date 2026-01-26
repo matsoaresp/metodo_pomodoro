@@ -2,32 +2,27 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycles } from "../Cycles";
 import { Defaultbutton } from "../DefaultButton";
 import { DefaultInput } from "../DefaultInput";
-import type { HomeProps } from "../../pages/home";
+import { useTaskContext } from "../../context/TaskContexto/useTaslContext";
+
+export function MainForm() {
+
+  const { setState} = useTaskContext();
 
 
-export function MainForm({ state, setState }: HomeProps) {
-
-  function handleClick() {
-
+  function handleClick () {
     setState(prevState => {
       return {
         ...prevState,
-        config: {
-          ...prevState.config,
-          workTime: 34
-        },
-        formattedSecondsRemaining: '21:41'
-      }
-    })
-  }
+        formatedSecondsRemaining: '21:00'
+      };
+    });
 
+  }
   return (
     <>
       <form className='form'>
         <div>
-          <button onClick={handleClick}>
-            Clicar
-          </button>
+         
         </div>
         <DefaultInput labelText='Mateus' id='meuInput' type='text' placeholder='Digite algo'
         />
@@ -45,5 +40,4 @@ export function MainForm({ state, setState }: HomeProps) {
       </form>
     </>
   )
-
 }
