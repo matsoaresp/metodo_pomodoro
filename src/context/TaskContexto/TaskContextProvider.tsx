@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { useState } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> Stashed changes
 import { initialTaskState } from "./initialTaskState";
 import { TaskContext } from "./TaskContext";
 
@@ -10,6 +14,12 @@ export default function TaskContextProvider({ children }: TaskContextProviderPro
 
   const [state, setState] = useState(initialTaskState);
 
+<<<<<<< Updated upstream
+=======
+  useEffect(() => {
+    console.log(state)
+  }, [state])
+>>>>>>> Stashed changes
 
   return (
     <TaskContext.Provider value={{state, setState}}>
