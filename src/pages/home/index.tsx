@@ -11,7 +11,6 @@ export type HomeProps = {
 
 export function Home(props: HomeProps) {
   
-
   return (
     <>
       <MainTemplate>
@@ -20,7 +19,7 @@ export function Home(props: HomeProps) {
         </Container>
 
         <Container>
-            <MainForm {...props}/>
+            <MainForm/>
 
         </Container>
       </MainTemplate>

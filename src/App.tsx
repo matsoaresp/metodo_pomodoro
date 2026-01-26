@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router';
 import { useState } from 'react';
 import type { TaskStateModel } from './models/TaskStateModel';
 import { Home } from './pages/home';
+import { TaskContext } from './context';
+import TaskContextProvider from './context/TaskContexto/useTaslContext';
 /*
 export type TaskStateModel = {
     tasks: TaskModel[];
@@ -26,8 +28,8 @@ const initialState: TaskStateModel = {
   currentCycle: 0,
   config: {
     workTime: 25,
-    shortBreakTime:5,
-    longBreakTime:15,
+    shortBreakTime: 5,
+    longBreakTime: 15,
   }
 };
 export default function App() {
@@ -35,11 +37,14 @@ export default function App() {
 
 
   return (
-     <div>
-    <BrowserRouter>
-  <Home state={state} setState = {setState}/>
-  </BrowserRouter>
-  </div>
+    <div>
+      <BrowserRouter>
+      <TaskContextProvider>
+          <Home state={state} setState={setState} />
+      </TaskContextProvider>
+        
+      </BrowserRouter>
+    </div>
   )
 
 
