@@ -16,8 +16,7 @@ html {
     font-size: 62.5%;
 }
 .container {
-     max-width: 98rem;
-     margin: 0 auto;
+    margin: 0 auto;
 }
 
 .content {
@@ -33,7 +32,6 @@ html {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 2.4rem;
 }
 
 

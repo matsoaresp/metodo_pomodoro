@@ -3,13 +3,18 @@ import { Cycles } from "../Cycles";
 import { Defaultbutton } from "../DefaultButton";
 import { DefaultInput } from "../DefaultInput";
 import { useTaskContext } from "../../context/TaskContexto/useTaslContext";
+import { useState } from "react";
 
 export function MainForm() {
 
   const { setState} = useTaskContext();
+  const [colorButton, setColorButton] = useState<'green' | 'red'>('green');
 
 
   function handleClick () {
+
+    setColorButton (prev => prev === 'green' ? 'red' : 'green')
+
     setState(prevState => {
       return {
         ...prevState,
@@ -21,9 +26,6 @@ export function MainForm() {
   return (
     <>
       <form className='form'>
-        <div>
-         
-        </div>
         <DefaultInput labelText='Mateus' id='meuInput' type='text' placeholder='Digite algo'
         />
 
@@ -35,7 +37,8 @@ export function MainForm() {
           <Cycles />
         </div>
         <div className='formRow'>
-          <Defaultbutton icon={<PlayCircleIcon />} color='green' />
+          <Defaultbutton icon={<PlayCircleIcon />} color={colorButton} 
+          onClick={handleClick} />
         </div>
       </form>
     </>

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import type { TaskStateModel } from './models/TaskStateModel';
 import { Home } from './pages/home';
 import { TaskContext } from './context';
-import TaskContextProvider from './context/TaskContexto/useTaslContext';
+import TaskContextProvider from './context/TaskContexto/TaskContextProvider';
 /*
 export type TaskStateModel = {
     tasks: TaskModel[];
@@ -42,7 +42,6 @@ export default function App() {
       <TaskContextProvider>
           <Home state={state} setState={setState} />
       </TaskContextProvider>
-        
       </BrowserRouter>
     </div>
   )
