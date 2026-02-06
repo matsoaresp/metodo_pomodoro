@@ -9,6 +9,7 @@
     border: none;
     min-width: 20rem;
     min-height: 4.5rem;
+    margin-top:2rem;
     cursor: pointer;
     transition: all 1s ease-in-out;
 }
