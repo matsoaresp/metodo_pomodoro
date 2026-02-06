@@ -2,23 +2,28 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycles } from "../Cycles";
 import { Defaultbutton } from "../DefaultButton";
 import { DefaultInput } from "../DefaultInput";
-import { useTaskContext } from "../../context/TaskContexto/useTaslContext";
+import { useTaskContext } from "../../context/TaskContexto/useTaskContext";
 import { useRef, useState } from "react";
 import type { TaskModel } from "../../models/TaskModel";
+import { getNextCycle } from "../../utils/getNextCycle";
+import { getNextCycleType } from "../../utils/getNextCycleType";
 
 export function MainForm() {
 
-  const { setState} = useTaskContext();
-  const numero = useRef(0)
-  const [taskName, setTaskName] = useState('')
-  const taskNameInput = useRef<HTMLInputElement>(null)
+  const { state, setState} = useTaskContext();
+  const [taskName, setTaskName] = useState('');
+  const taskNameInput = useRef<HTMLInputElement>(null);
+  const nextCycle = getNextCycle(state.currentCycle);
+  const nextCycleType = getNextCycleType(nextCycle);
+
+  
   const [colorButton, setColorButton] = useState<'green' | 'red'>('green');
 
 
   function handleCreateNewTask (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     
-    if (taskNameInput.current === null) return
+    if (taskNameInput.current === null) return;
 
     const taskName = taskNameInput.current.value.trim();
 
@@ -34,7 +39,7 @@ export function MainForm() {
       completeDate: null,
       interruptDate: null,
       duration: 1,
-      type: 'workTime',
+      type: nextCycleType,
     };
 
     const secondsRemaining = newTask.duration * 60;
@@ -44,7 +49,7 @@ export function MainForm() {
         ...prevState,
         config: {...prevState.config},
         activeTask: newTask,
-        currentCycle: 1,
+        currentCycle: nextCycle, 
         secondsRemaining,
         formattedSecondsRemaining: '00:00',
         tasks: [...prevState.tasks, newTask],
@@ -67,7 +72,6 @@ export function MainForm() {
       <form className='form' onSubmit={handleCreateNewTask}>
         <div className='formRow'>
         <DefaultInput 
-        labelText='Mateus' 
         id='meuInput' 
         type='text' 
         placeholder='Digite algo'

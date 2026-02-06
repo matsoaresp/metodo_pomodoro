@@ -1,6 +1,6 @@
 import type { HomeProps } from '../../pages/home'
 import styles from './styles.module.css'
-import { useTaskContext } from '../../context/TaskContexto/useTaslContext';
+import { useTaskContext } from '../../context/TaskContexto/useTaskContext';
 
 
 export function CountDown ({state}: HomeProps) {

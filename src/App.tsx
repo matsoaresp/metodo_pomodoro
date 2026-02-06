@@ -27,9 +27,9 @@ const initialState: TaskStateModel = {
   activeTask: null,
   currentCycle: 0,
   config: {
-    workTime: 25,
-    shortBreakTime: 5,
-    longBreakTime: 15,
+    workTime: 0,
+    shortBreakTime: 0,
+    longBreakTime: 0,
   }
 };
 export default function App() {
