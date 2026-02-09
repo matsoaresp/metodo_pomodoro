@@ -4,7 +4,8 @@ import { BrowserRouter } from 'react-router';
 import { Home } from './pages/home';
 
 
-import TaskContextProvider from './context/TaskContexto/TaskContextProvider';
+import { TaskContextProvider } from "./context/TaskContexto/TaskContextProvider";
+
 
 export default function App() {
   
