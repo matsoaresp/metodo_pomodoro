@@ -1,4 +1,4 @@
-import { PlayCircleIcon } from "lucide-react";
+import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import { Cycles } from "../Cycles";
 import { Defaultbutton } from "../DefaultButton";
 import { DefaultInput } from "../DefaultInput";
@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import type { TaskModel } from "../../models/TaskModel";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
+import { formattedSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 
 export function MainForm() {
 
@@ -22,51 +23,54 @@ export function MainForm() {
 
   function handleCreateNewTask (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    
+
     if (taskNameInput.current === null) return;
-
+    
     const taskName = taskNameInput.current.value.trim();
-
-    if (!taskName){
+    if (!taskName) {
       alert('Digite o nome da tarefa')
-      return
+      return;
     }
 
-    const newTask: TaskModel =  {
+    const newTask: TaskModel = {
       id: Date.now().toString(),
       name: taskName,
       startDate: Date.now(),
       completeDate: null,
       interruptDate: null,
-      duration: 1,
+      duration: state.config[nextCycleType],
       type: nextCycleType,
-    };
-
-    const secondsRemaining = newTask.duration * 60;
-
-    setState(prevState => {
-      return {
-        ...prevState,
-        config: {...prevState.config},
-        activeTask: newTask,
-        currentCycle: nextCycle, 
-        secondsRemaining,
-        formattedSecondsRemaining: '00:00',
-        tasks: [...prevState.tasks, newTask],
-
-      }
-    })
-
-    setColorButton (prev => prev === 'green' ? 'red' : 'green')
-
-    setState(prevState => {
-      return {
-        ...prevState,
-        formatedSecondsRemaining: '21:00'
       };
-    });
 
+      const secondsRemaining = newTask.duration * 60;
+
+      setState(prevState => {
+        return {
+          ...prevState,
+          config: {...prevState.config},
+          activeTask: newTask,
+          currentCycle: nextCycle,
+          secondsRemaining,
+          formattedSecondsRemaining: formattedSecondsToMinutes(secondsRemaining),
+          tasks: [...prevState.tasks, newTask],
+        };
+
+
+      })
   }
+
+  function handleInterruptTask (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault()
+  
+        setState(prevState => {
+        return {
+          ...prevState,
+          activeTask: null,
+          secondsRemaining: 0,
+          formattedSecondsRemaining: '00:00',
+        };
+      })
+      }
   return (
     <>
       <form className='form' onSubmit={handleCreateNewTask}>
@@ -76,6 +80,7 @@ export function MainForm() {
         type='text' 
         placeholder='Digite algo'
         value={taskName}
+        disabled= {!!state.activeTask}
         onChange={e => setTaskName(e.target.value)}
         ref={taskNameInput}
         />
@@ -92,10 +97,27 @@ export function MainForm() {
         <div>
           
         </div>
-        <div className='formRow'>
-          <Defaultbutton icon={<PlayCircleIcon />} color={colorButton} 
-          />
-        </div>
+       <div className='formRow'>
+  {!state.activeTask &&(
+    <Defaultbutton
+      aria-label="Iniciar nova tarefa"
+      type="submit"
+      icon={<PlayCircleIcon />}
+      color="green"
+      key= 'Este é o botao de submit'
+    />
+  )}
+       {!!state.activeTask && (
+    <Defaultbutton
+      aria-label="Interromper tarefa"
+      type="button"
+      icon={<StopCircleIcon />}
+      color="red"
+      onClick={handleInterruptTask}
+      key='Não enviar o form'
+    />
+  )}
+</div>
       </form>
     </>
   )
