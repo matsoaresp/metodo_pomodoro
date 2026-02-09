@@ -7,10 +7,9 @@ type TaskContextProps = {
   setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
 };
 
-const initialContextValue = {
+const initialContextValue: TaskContextProps = {
   state: initialTaskState,
-  setState: () => { },
-}
+  setState: () => {},
+};
 
-export const TaskContext = createContext<TaskContextProps>(initialContextValue)
-
+export const TaskContext = createContext<TaskContextProps>(initialContextValue);
