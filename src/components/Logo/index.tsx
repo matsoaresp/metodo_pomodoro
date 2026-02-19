@@ -1,8 +1,6 @@
 import styles from './styles.module.css';
 import { TimerIcon } from 'lucide-react';
 
-
-
 export function Logo () {
 
 return <div className={styles.logo}>
@@ -11,6 +9,4 @@ return <div className={styles.logo}>
         <span>Chronos</span>
         </a>
     </div>
-
-
 }
