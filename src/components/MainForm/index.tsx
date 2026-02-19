@@ -5,9 +5,10 @@ import { DefaultInput } from "../DefaultInput";
 import { useTaskContext } from "../../context/TaskContexto/useTaskContext";
 import { useState } from "react";
 import type { TaskModel } from "../../models/TaskModel";
+import { TaskActionTypes } from "../../context/TaskContexto/taskActions";
+import { Tips } from "../Tips";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
-import { TaskActionTypes } from "../../context/TaskContexto/taskActions";
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -16,26 +17,39 @@ export function MainForm() {
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
 
+
+
+
+
   function handleCreateNewTask(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!taskName.trim()) {
-    alert('Digite o nome da tarefa');
-    return;
+    if(!taskName.trim()) {
+      alert('Digite o nome da tarefa');
+      return;
+    }
+
+    const newTask: TaskModel = {
+      id: Date.now().toString(),
+      name: taskName,
+      startDate: Date.now(),
+      completeDate: null,
+      interruptDate: null,
+      duration: state.config[nextCycleType],
+      type: nextCycleType,
+    };
+
+    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+
+    const worker = new Worker(
+    new URL('../../workers/timerWorker.js', import.meta.url),
+  );
+
+  worker.postMessage('Olá')
+  worker.onmessage = function(event) {
+    console.log('PRINCIPAL recebeu:', event.data)
   }
-
-  const newTask: TaskModel = {
-    id: Date.now().toString(),
-    name: taskName,
-    startDate: Date.now(),
-    completeDate: null,
-    interruptDate: null,
-    duration: state.config[nextCycleType],
-    type: nextCycleType,
-  };
-
-  dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
-}
+  }
 
 
   function handleInterruptTask() {
@@ -56,7 +70,7 @@ export function MainForm() {
       </div>
 
       <div className='formRow'>
-        <p>Nesse ciclo descanse 5 min</p>
+        <Tips></Tips>
       </div>
 
       <div className='formRow'>

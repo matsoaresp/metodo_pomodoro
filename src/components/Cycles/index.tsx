@@ -9,7 +9,7 @@ export function Cycles () {
     const cycleDescriptionMap = {
         workTime: 'foco',
         shortBreakTime: 'descanso curto',
-        longBreakTime: 'descanso longo'
+        longBreakTime: 'descanso longo',
     }
 return  (
     <div className={styles.cycles}>
